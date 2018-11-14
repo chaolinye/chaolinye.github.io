@@ -79,13 +79,25 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Freedom">
-<meta property="og:url" content="https://chaolinye.github.io/index.html">
+<meta name="description" content="应用场景在日常开发工作中，经常需要抓取Http包来调试前后端的数据传递，此外，为了便于调试，有时也会需要对前端发起的对远程服务器的Http请求转发到本机等。这时就要用到Http代理调试工具来实现以上场景。 为什么要用whistle说到Http代理工具，windows系统中最常用的应该是fiddler。fiddler是一款功能十分强大的Http代理调试工具，但长期使用会很占内存，经常卡死，这时就只能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="whistle -- 跨平台抓包调试代理工具">
+<meta property="og:url" content="https://chaolinye.github.io/2018/11/15/whistle/index.html">
 <meta property="og:site_name" content="Freedom">
+<meta property="og:description" content="应用场景在日常开发工作中，经常需要抓取Http包来调试前后端的数据传递，此外，为了便于调试，有时也会需要对前端发起的对远程服务器的Http请求转发到本机等。这时就要用到Http代理调试工具来实现以上场景。 为什么要用whistle说到Http代理工具，windows系统中最常用的应该是fiddler。fiddler是一款功能十分强大的Http代理调试工具，但长期使用会很占内存，经常卡死，这时就只能">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fx117j6uimj31kw0w44a9.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fx124b9qpbj31kw0oh45j.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fx12632l9sj31kw0lngso.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fx1297l5kqj30fs0ec3zd.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fx12jg6hmqj31kw0qoac9.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fx12ly02hjj31kw0ksdij.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fx12pgmdhrj31kw0ph46o.jpg">
+<meta property="og:updated_time" content="2018-11-14T16:08:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Freedom">
+<meta name="twitter:title" content="whistle -- 跨平台抓包调试代理工具">
+<meta name="twitter:description" content="应用场景在日常开发工作中，经常需要抓取Http包来调试前后端的数据传递，此外，为了便于调试，有时也会需要对前端发起的对远程服务器的Http请求转发到本机等。这时就要用到Http代理调试工具来实现以上场景。 为什么要用whistle说到Http代理工具，windows系统中最常用的应该是fiddler。fiddler是一款功能十分强大的Http代理调试工具，但长期使用会很占内存，经常卡死，这时就只能">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fx117j6uimj31kw0w44a9.jpg">
 
 
 
@@ -115,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://chaolinye.github.io/"/>
+  <link rel="canonical" href="https://chaolinye.github.io/2018/11/15/whistle/"/>
 
 
 
 
 
-  <title>Freedom</title>
+  <title>whistle -- 跨平台抓包调试代理工具 | Freedom</title>
   
 
 
@@ -140,8 +152,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -224,9 +235,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -256,9 +267,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/15/whistle/" itemprop="url">whistle -- 跨平台抓包调试代理工具</a></h1>
+          <h1 class="post-title" itemprop="name headline">whistle -- 跨平台抓包调试代理工具</h1>
         
 
         <div class="post-meta">
@@ -308,9 +317,7 @@
       
 
       
-        
-          
-            <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>在日常开发工作中，经常需要抓取Http包来调试前后端的数据传递，此外，为了便于调试，有时也会需要对前端发起的对远程服务器的Http请求转发到本机等。这时就要用到Http代理调试工具来实现以上场景。</p>
+        <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>在日常开发工作中，经常需要抓取Http包来调试前后端的数据传递，此外，为了便于调试，有时也会需要对前端发起的对远程服务器的Http请求转发到本机等。这时就要用到Http代理调试工具来实现以上场景。</p>
 <h2 id="为什么要用whistle"><a href="#为什么要用whistle" class="headerlink" title="为什么要用whistle"></a>为什么要用whistle</h2><p>说到Http代理工具，windows系统中最常用的应该是fiddler。fiddler是一款功能十分强大的Http代理调试工具，但长期使用会很占内存，经常卡死，这时就只能使用重启大法了，而且fiddler的编写rule的脚本也比较复杂，编写难度高。</p>
 <p>在macOS系统中，比较常用的Http代理工具是Charles,这款应用颜值很高，使用也挺简单的，但是需要购买(当然也可以下载网络上的破解版)</p>
 <p>那么，对于以上两款常用的Http代理工具，whistle有什么优势呢</p>
@@ -382,8 +389,6 @@
 <li><a href="http://wproxy.org/whistle/quickstart.html" target="_blank" rel="noopener">Whistle Gitbook</a></li>
 </ul>
 
-          
-        
       
     </div>
     
@@ -400,171 +405,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chaolinye.github.io/2018/11/14/head-first-yarn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="freedom">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Freedom">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/14/head-first-yarn/" itemprop="url">yarn简单入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-14T21:58:17+08:00">
-                2018-11-14
-              </time>
+              <a href="/2018/11/14/head-first-yarn/" rel="next" title="yarn简单入门">
+                <i class="fa fa-chevron-left"></i> yarn简单入门
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h2 id="yarn是什么"><a href="#yarn是什么" class="headerlink" title="yarn是什么"></a>yarn是什么</h2><blockquote>
-<p>yarn是由Facebook、Google、Exponent 和 Tilde 联合推出了一个新的 JS 包管理工具。</p>
-</blockquote>
-<h2 id="为什么要使用yarn"><a href="#为什么要使用yarn" class="headerlink" title="为什么要使用yarn"></a>为什么要使用yarn</h2><p>说到JS包管理工具，大家的第一反应自然是npm，npm是官方提供的包管理工具。<br>有了npm，为什么还要转用yarn呢，yarn解决了什么样的问题？</p>
-<h3 id="npm的缺点（npm5-0之前的版本）"><a href="#npm的缺点（npm5-0之前的版本）" class="headerlink" title="npm的缺点（npm5.0之前的版本）"></a>npm的缺点（npm5.0之前的版本）</h3><p>在yarn诞生之前，在使用npm管理包的过程中发现存在一些问题,主要有以下两点</p>
-<ul>
-<li>每次<code>npm install</code>耗时长</li>
-<li>不同机器或者环境下，<code>npm install</code> 下载的版本不一致，导致偶尔会出现一些奇怪的bug</li>
-</ul>
-<h3 id="yarn的改进方案"><a href="#yarn的改进方案" class="headerlink" title="yarn的改进方案"></a>yarn的改进方案</h3><h4 id="提高包的下载速度"><a href="#提高包的下载速度" class="headerlink" title="提高包的下载速度"></a>提高包的下载速度</h4><ul>
-<li>并行下载。并行下载以最大化资源利用率，因此安装速度更快。</li>
-<li>缓存。缓存了每个下载过的包，所以再次使用时无需重复下载。缓存过的包，离线模式也可下载</li>
-</ul>
-<h4 id="保证依赖包版本的确定性"><a href="#保证依赖包版本的确定性" class="headerlink" title="保证依赖包版本的确定性"></a>保证依赖包版本的确定性</h4><ul>
-<li>使用yarn.lock文件记录依赖包的确定版本，<code>yarn install</code>根据yarn.lock的依赖包版本来下载，保证依赖包的版本在每个环境都是一致的</li>
-</ul>
-<h2 id="yarn的使用"><a href="#yarn的使用" class="headerlink" title="yarn的使用"></a>yarn的使用</h2><h3 id="yarn的安装"><a href="#yarn的安装" class="headerlink" title="yarn的安装"></a>yarn的安装</h3><p>macOS系统，可以使用brew来安装yarn</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install yarn</span><br></pre></td></tr></table></figure>
-<p>安装完毕后，运行以下命令确认yarn可以正常使用</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn -version</span><br></pre></td></tr></table></figure>
-<p>其它系统的安装方法，可以参照官网的 <a href="https://yarn.bootcss.com/docs/install/" target="_blank" rel="noopener">安装指导</a></p>
-<h3 id="yarn的基本命令"><a href="#yarn的基本命令" class="headerlink" title="yarn的基本命令"></a>yarn的基本命令</h3><p>yarn和npm的使用方式很像，主要命令只是名称不太一样，流程基本一致。</p>
-<h4 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h4><p>运行以下命令，然后输入项目信息(回车选择默认信息)，就会在当前目录生成一个package.json文件，这个package.json文件和npm生成的基本一致，用于管理项目信息和依赖。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn init</span><br></pre></td></tr></table></figure>
-<h4 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h4><p>命令格式：<code>yarn add [package]@[version]</code><br>等同于 <code>npm install --save [package]@[version]</code><br>比如，添加vue依赖包</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add vue</span><br></pre></td></tr></table></figure>
-<p>添加依赖会下载vue依赖到当前目录的node_modules目录下，并在package.json文件中的依赖项加上vue依赖。<br>不一样的是，安装的依赖包的版本、下载的仓库地址、包的签名会记录到yarn.lock文件</p>
-<h4 id="删除依赖"><a href="#删除依赖" class="headerlink" title="删除依赖"></a>删除依赖</h4><p>命令格式: <code>yarn remove [package]</code><br>等同于 <code>npm uninstall --save [package]</code><br>如:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn remove vue</span><br></pre></td></tr></table></figure>
-<p>删除依赖会删除node_modules目录下的相应模块，也会更新package.json和yarn.lock文件</p>
-<h4 id="更新依赖"><a href="#更新依赖" class="headerlink" title="更新依赖"></a>更新依赖</h4><p>命令格式: <code>yarn upgrade [package]@[version]</code><br>等同于: <code>npm update --save [package]</code><br>如：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn upgrade vue@2.5.17</span><br></pre></td></tr></table></figure>
-<p>更新依赖会更新node_modules目录下的相应模块，也会更新package.json和yarn.lock文件</p>
-<h4 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h4><p>命令格式: <code>yarn install</code><br>等同于: <code>npm install</code><br>安装时，如果yarn.lock文件中有相应依赖的信息，则按照yarn.lock中的信息进行下载<br>如果yarn.lock没有相应信息，则根据package.json中的版本根据相应规则下载并记录到yarn.lock中。</p>
-<h2 id="yarn对社区的作用"><a href="#yarn对社区的作用" class="headerlink" title="yarn对社区的作用"></a>yarn对社区的作用</h2><p>yarn的出现在一定程度上促进了npm的改进，npm从5.0版本开始，使用package-lock.json来保证依赖包的确定性，也有使用缓存改进install的性能，但目前，yarn的速度依然目前优于npm。</p>
-<h2 id="是否要转yarn"><a href="#是否要转yarn" class="headerlink" title="是否要转yarn"></a>是否要转yarn</h2><p>yarn对于npm的优势主要在于install的速度，如果追求更快的install速度，可以考虑使用yarn，而且个人觉得yarn的提示信息也比较清晰些。</p>
-<h2 id="学习资料"><a href="#学习资料" class="headerlink" title="学习资料"></a>学习资料</h2><ul>
-<li><a href="https://yarn.bootcss.com/docs/" target="_blank" rel="noopener">yarn官方文档</a></li>
-<li><a href="https://github.com/yarnpkg/yarn" target="_blank" rel="noopener">yarn GitHub源码</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -574,10 +436,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -585,6 +448,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -605,8 +472,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -648,6 +524,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景"><span class="nav-number">1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要用whistle"><span class="nav-number">2.</span> <span class="nav-text">为什么要用whistle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#whistle的功能"><span class="nav-number">3.</span> <span class="nav-text">whistle的功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#入门whistle"><span class="nav-number">4.</span> <span class="nav-text">入门whistle</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#whistle的安装"><span class="nav-number">4.1.</span> <span class="nav-text">whistle的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Node"><span class="nav-number">4.1.1.</span> <span class="nav-text">安装Node</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Whistle"><span class="nav-number">4.1.2.</span> <span class="nav-text">安装Whistle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Chrome插件-–-SwitchyOmega"><span class="nav-number">4.1.3.</span> <span class="nav-text">安装Chrome插件 – SwitchyOmega</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#whistle的基本使用"><span class="nav-number">4.2.</span> <span class="nav-text">whistle的基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启动、关闭、重启whistle"><span class="nav-number">4.2.1.</span> <span class="nav-text">启动、关闭、重启whistle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抓包"><span class="nav-number">4.2.2.</span> <span class="nav-text">抓包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Https配置"><span class="nav-number">4.2.3.</span> <span class="nav-text">Https配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rules的编写"><span class="nav-number">4.2.4.</span> <span class="nav-text">Rules的编写</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#hosts配置"><span class="nav-number">4.2.4.1.</span> <span class="nav-text">hosts配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#访问本地文件"><span class="nav-number">4.2.4.2.</span> <span class="nav-text">访问本地文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#请求转发"><span class="nav-number">4.2.4.3.</span> <span class="nav-text">请求转发</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正则表达式匹配"><span class="nav-number">4.2.4.4.</span> <span class="nav-text">正则表达式匹配</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通配符匹配"><span class="nav-number">4.2.4.5.</span> <span class="nav-text">通配符匹配</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习资料"><span class="nav-number">5.</span> <span class="nav-text">学习资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -788,6 +680,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
