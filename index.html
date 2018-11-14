@@ -80,12 +80,12 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Freedom">
+<meta property="og:title" content="Freedom的编程日志">
 <meta property="og:url" content="https://chaolinye.github.io/index.html">
-<meta property="og:site_name" content="Freedom">
+<meta property="og:site_name" content="Freedom的编程日志">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Freedom">
+<meta name="twitter:title" content="Freedom的编程日志">
 
 
 
@@ -121,7 +121,7 @@
 
 
 
-  <title>Freedom</title>
+  <title>Freedom的编程日志</title>
   
 
 
@@ -152,7 +152,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Freedom</span>
+        <span class="site-title">Freedom的编程日志</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -248,7 +248,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Freedom">
+      <meta itemprop="name" content="Freedom的编程日志">
     </span>
 
     
@@ -309,8 +309,7 @@
 
       
         
-          
-            <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>在日常开发工作中，经常需要抓取Http包来调试前后端的数据传递，此外，为了便于调试，有时也会需要对前端发起的对远程服务器的Http请求转发到本机等。这时就要用到Http代理调试工具来实现以上场景。</p>
+          <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>在日常开发工作中，经常需要抓取Http包来调试前后端的数据传递，此外，为了便于调试，有时也会需要对前端发起的对远程服务器的Http请求转发到本机等。这时就要用到Http代理调试工具来实现以上场景。</p>
 <h2 id="为什么要用whistle"><a href="#为什么要用whistle" class="headerlink" title="为什么要用whistle"></a>为什么要用whistle</h2><p>说到Http代理工具，windows系统中最常用的应该是fiddler。fiddler是一款功能十分强大的Http代理调试工具，但长期使用会很占内存，经常卡死，这时就只能使用重启大法了，而且fiddler的编写rule的脚本也比较复杂，编写难度高。</p>
 <p>在macOS系统中，比较常用的Http代理工具是Charles,这款应用颜值很高，使用也挺简单的，但是需要购买(当然也可以下载网络上的破解版)</p>
 <p>那么，对于以上两款常用的Http代理工具，whistle有什么优势呢</p>
@@ -320,69 +319,13 @@
 <li>rule脚本简单。whistle的rule脚本是基于node语法的，相对比较简单。</li>
 <li>免费，代码开源。whistle的代码发布在github上，可以参考学习。</li>
 </ul>
-<p>本人工作电脑是windows系统，而个人笔记本电脑则是macbook，跨平台的工具可以减低学习成本。<br>工作的电脑，性能不行，长时间使用fiddler经常卡死，体验非常不好，而且由于fiddler脚本的语法并不常见，编写脚本耗时很长。偶然看到同事使用whistle，感觉不错，故此，转用whistle。</p>
-<h2 id="whistle的功能"><a href="#whistle的功能" class="headerlink" title="whistle的功能"></a>whistle的功能</h2><p>whistle的主要功能如下：</p>
-<ul>
-<li>查看HTTP、HTTPS请求响应内容</li>
-<li>查看WebSocket、Socket收发的帧数据</li>
-<li>设置请求hosts、上游http/socks代理</li>
-<li>修改请求url、方法、头部、内容</li>
-<li>修改响应状态码、头部、内容，并支持本地替换</li>
-<li>修改WebSocket或Socket收发的帧数据</li>
-<li>内置调试移动端页面的weinre和log</li>
-<li>作为HTTP代理或反向代理</li>
-<li>支持用Node编写插件扩展功能</li>
-</ul>
-<p>具体功能如下:</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fx117j6uimj31kw0w44a9.jpg" alt="whistle功能图"></p>
-<h2 id="入门whistle"><a href="#入门whistle" class="headerlink" title="入门whistle"></a>入门whistle</h2><h3 id="whistle的安装"><a href="#whistle的安装" class="headerlink" title="whistle的安装"></a>whistle的安装</h3><h4 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h4><p>访问<code>https://nodejs.org/</code>，安装LTS版本的Node，默认安装即可</p>
-<p>安装完Node后，执行以下命令，查看Node版本，确认Node安装成功</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
-<h4 id="安装Whistle"><a href="#安装Whistle" class="headerlink" title="安装Whistle"></a>安装Whistle</h4><p>Node安装成功后，执行以下命令安装whistle</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g whistle</span><br></pre></td></tr></table></figure>
-<p>npm默认镜像是在国外，如果访问不通或者很慢，可以指定国内的镜像(比如淘宝的)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g whistle --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-<p>安装完whistle后，运行以下命令，查看whistle版本，确认whistle安装成功</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w2 --version</span><br></pre></td></tr></table></figure>
-<h4 id="安装Chrome插件-–-SwitchyOmega"><a href="#安装Chrome插件-–-SwitchyOmega" class="headerlink" title="安装Chrome插件 – SwitchyOmega"></a>安装Chrome插件 – <strong>SwitchyOmega</strong></h4><p>whistle安装成功后，启动whistle，配置浏览器代理为whistle的监听地址(默认为127.0.0.1:8899),即可使用。</p>
-<p>但是，在开发工作中，会经常需要切换使用代理和不使用代理，或者某些地址使用代理，某些地址不使用代理。<br>SwitchyOmega是一个Chrome浏览器的插件，可以快捷切换代理，每个代理还指定需要代理的host和port，可以完美满足以上需求。</p>
-<p>可以直接上Chrome应用商店下载安装SwitchyOmega<br>如果不能访问外网，在从SwtichyOmega的github仓库的<a href="https://github.com/FelisCatus/SwitchyOmega/releases" target="_blank" rel="noopener">release页</a>下载，然后拖到Chrome浏览器进行安装。</p>
-<p>SwitchyOmega安装成功后，可以点击浏览器地址栏右侧的SwitchyOmega插件，选择<em>选项</em>, 进入SwitchyOmega配置页面</p>
-<p>配置一个proxy为whistle的监听地址:</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fx124b9qpbj31kw0oh45j.jpg" alt="配置proxy"></p>
-<p><em>auto swtich</em> 类型可以配置不同的域名使用不同的代理</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fx12632l9sj31kw0lngso.jpg" alt="auto swtich"></p>
-<p>在访问浏览器页面时，可以随时通过点击地址栏右侧的SwitchyOmega插件切换不同的代理,十分便捷</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fx1297l5kqj30fs0ec3zd.jpg" alt="切换代理"></p>
-<p>SwtichyOmega的功能从配置界面上就可以大致了解，感兴趣的可以自行探索一下更多的用法。</p>
-<h3 id="whistle的基本使用"><a href="#whistle的基本使用" class="headerlink" title="whistle的基本使用"></a>whistle的基本使用</h3><h4 id="启动、关闭、重启whistle"><a href="#启动、关闭、重启whistle" class="headerlink" title="启动、关闭、重启whistle"></a>启动、关闭、重启whistle</h4><p>启动whistle:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w2 start</span><br></pre></td></tr></table></figure>
-<p>whistle默认监听127.0.0.1:8899</p>
-<p>关闭whistle:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w2 stop</span><br></pre></td></tr></table></figure>
-<p>重启whistle:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w2 restart</span><br></pre></td></tr></table></figure>
-<h4 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h4><p>whistle启动成功后，打开Chrome浏览器，访问<code>127.0.0.1:8899</code>，可以看到whistle的Rules页面</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fx12jg6hmqj31kw0qoac9.jpg" alt="Rules页"></p>
-<p>点击左边栏的Network，打开Network页面，从该页面可以观察whistle代理的请求</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fx12ly02hjj31kw0ksdij.jpg" alt="Network页"></p>
-<p>这时，点击SwtichyOmega插件切换代理为whistle的代理，然后打开另一个tab，访问<code>www.baidu.com</code></p>
-<p>这时，回到whistle的tab页，从界面可以看到whistle已经捕获到<code>www.baidu.com</code>的请求了</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fx12pgmdhrj31kw0ph46o.jpg" alt="Network页抓包"></p>
-<p>不过由于，百度页面的是Https请求，目前还没有配置Https请求的捕获，所以看不到Https请求的内容</p>
-<h4 id="Https配置"><a href="#Https配置" class="headerlink" title="Https配置"></a>Https配置</h4><p>Https的配置，可以参照官方gitbook的<a href="http://wproxy.org/whistle/webui/https.html" target="_blank" rel="noopener">Https教程</a></p>
-<h4 id="Rules的编写"><a href="#Rules的编写" class="headerlink" title="Rules的编写"></a>Rules的编写</h4><h5 id="hosts配置"><a href="#hosts配置" class="headerlink" title="hosts配置"></a>hosts配置</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wwww.mysite.com 127.0.0.1:4000</span><br></pre></td></tr></table></figure>
-<h5 id="访问本地文件"><a href="#访问本地文件" class="headerlink" title="访问本地文件"></a>访问本地文件</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www.mysite.com/index.html file:////Users/username/<span class="built_in">test</span>/index.html</span><br></pre></td></tr></table></figure>
-<h5 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.freedom.com https://freedom.github.io</span><br></pre></td></tr></table></figure>
-<h5 id="正则表达式匹配"><a href="#正则表达式匹配" class="headerlink" title="正则表达式匹配"></a>正则表达式匹配</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^https://blog\.(.*)\.com/ https://<span class="variable">$1</span>.github.io</span><br></pre></td></tr></table></figure>
-<h5 id="通配符匹配"><a href="#通配符匹配" class="headerlink" title="通配符匹配"></a>通配符匹配</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*/**.freedom.com/<span class="built_in">test</span>  127.0.0.1:8080/<span class="variable">$2</span></span><br></pre></td></tr></table></figure>
-<p>Rules可以做到的事情很多，详细可以参看<a href="http://wproxy.org/whistle/rules/" target="_blank" rel="noopener">whistle的协议列表</a></p>
-<h2 id="学习资料"><a href="#学习资料" class="headerlink" title="学习资料"></a>学习资料</h2><ul>
-<li><a href="https://github.com/avwo/whistle" target="_blank" rel="noopener">Whistle Github仓库</a></li>
-<li><a href="http://wproxy.org/whistle/quickstart.html" target="_blank" rel="noopener">Whistle Gitbook</a></li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/15/whistle/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -438,7 +381,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Freedom">
+      <meta itemprop="name" content="Freedom的编程日志">
     </span>
 
     
@@ -499,8 +442,7 @@
 
       
         
-          
-            <h2 id="yarn是什么"><a href="#yarn是什么" class="headerlink" title="yarn是什么"></a>yarn是什么</h2><blockquote>
+          <h2 id="yarn是什么"><a href="#yarn是什么" class="headerlink" title="yarn是什么"></a>yarn是什么</h2><blockquote>
 <p>yarn是由Facebook、Google、Exponent 和 Tilde 联合推出了一个新的 JS 包管理工具。</p>
 </blockquote>
 <h2 id="为什么要使用yarn"><a href="#为什么要使用yarn" class="headerlink" title="为什么要使用yarn"></a>为什么要使用yarn</h2><p>说到JS包管理工具，大家的第一反应自然是npm，npm是官方提供的包管理工具。<br>有了npm，为什么还要转用yarn呢，yarn解决了什么样的问题？</p>
@@ -516,32 +458,13 @@
 <h4 id="保证依赖包版本的确定性"><a href="#保证依赖包版本的确定性" class="headerlink" title="保证依赖包版本的确定性"></a>保证依赖包版本的确定性</h4><ul>
 <li>使用yarn.lock文件记录依赖包的确定版本，<code>yarn install</code>根据yarn.lock的依赖包版本来下载，保证依赖包的版本在每个环境都是一致的</li>
 </ul>
-<h2 id="yarn的使用"><a href="#yarn的使用" class="headerlink" title="yarn的使用"></a>yarn的使用</h2><h3 id="yarn的安装"><a href="#yarn的安装" class="headerlink" title="yarn的安装"></a>yarn的安装</h3><p>macOS系统，可以使用brew来安装yarn</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install yarn</span><br></pre></td></tr></table></figure>
-<p>安装完毕后，运行以下命令确认yarn可以正常使用</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn -version</span><br></pre></td></tr></table></figure>
-<p>其它系统的安装方法，可以参照官网的 <a href="https://yarn.bootcss.com/docs/install/" target="_blank" rel="noopener">安装指导</a></p>
-<h3 id="yarn的基本命令"><a href="#yarn的基本命令" class="headerlink" title="yarn的基本命令"></a>yarn的基本命令</h3><p>yarn和npm的使用方式很像，主要命令只是名称不太一样，流程基本一致。</p>
-<h4 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h4><p>运行以下命令，然后输入项目信息(回车选择默认信息)，就会在当前目录生成一个package.json文件，这个package.json文件和npm生成的基本一致，用于管理项目信息和依赖。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn init</span><br></pre></td></tr></table></figure>
-<h4 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h4><p>命令格式：<code>yarn add [package]@[version]</code><br>等同于 <code>npm install --save [package]@[version]</code><br>比如，添加vue依赖包</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add vue</span><br></pre></td></tr></table></figure>
-<p>添加依赖会下载vue依赖到当前目录的node_modules目录下，并在package.json文件中的依赖项加上vue依赖。<br>不一样的是，安装的依赖包的版本、下载的仓库地址、包的签名会记录到yarn.lock文件</p>
-<h4 id="删除依赖"><a href="#删除依赖" class="headerlink" title="删除依赖"></a>删除依赖</h4><p>命令格式: <code>yarn remove [package]</code><br>等同于 <code>npm uninstall --save [package]</code><br>如:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn remove vue</span><br></pre></td></tr></table></figure>
-<p>删除依赖会删除node_modules目录下的相应模块，也会更新package.json和yarn.lock文件</p>
-<h4 id="更新依赖"><a href="#更新依赖" class="headerlink" title="更新依赖"></a>更新依赖</h4><p>命令格式: <code>yarn upgrade [package]@[version]</code><br>等同于: <code>npm update --save [package]</code><br>如：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn upgrade vue@2.5.17</span><br></pre></td></tr></table></figure>
-<p>更新依赖会更新node_modules目录下的相应模块，也会更新package.json和yarn.lock文件</p>
-<h4 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h4><p>命令格式: <code>yarn install</code><br>等同于: <code>npm install</code><br>安装时，如果yarn.lock文件中有相应依赖的信息，则按照yarn.lock中的信息进行下载<br>如果yarn.lock没有相应信息，则根据package.json中的版本根据相应规则下载并记录到yarn.lock中。</p>
-<h2 id="yarn对社区的作用"><a href="#yarn对社区的作用" class="headerlink" title="yarn对社区的作用"></a>yarn对社区的作用</h2><p>yarn的出现在一定程度上促进了npm的改进，npm从5.0版本开始，使用package-lock.json来保证依赖包的确定性，也有使用缓存改进install的性能，但目前，yarn的速度依然目前优于npm。</p>
-<h2 id="是否要转yarn"><a href="#是否要转yarn" class="headerlink" title="是否要转yarn"></a>是否要转yarn</h2><p>yarn对于npm的优势主要在于install的速度，如果追求更快的install速度，可以考虑使用yarn，而且个人觉得yarn的提示信息也比较清晰些。</p>
-<h2 id="学习资料"><a href="#学习资料" class="headerlink" title="学习资料"></a>学习资料</h2><ul>
-<li><a href="https://yarn.bootcss.com/docs/" target="_blank" rel="noopener">yarn官方文档</a></li>
-<li><a href="https://github.com/yarnpkg/yarn" target="_blank" rel="noopener">yarn GitHub源码</a></li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/14/head-first-yarn/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
