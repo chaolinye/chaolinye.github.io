@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="GitBook是一种使用Markdown语法编写的的电子书，并基于Git进行版本管理。 为什么要选择GitBookMarkdown语法简单，格式简洁，编写快速。 Git是目前最优秀的版本控制工具之一，使用Git和Git仓库来管理文档，即确保了文档存储的持久性，也可随时查看历史版本。 GitBook的主要用户群是程序员。MarkDown和Git已经是程序员的必备技能了，因此对于程序员而已，使用Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitBook初步认识">
+<meta property="og:url" content="https://chaolinye.github.io/2018/11/23/gitbook/index.html">
+<meta property="og:site_name" content="Freedom的编程日志">
+<meta property="og:description" content="GitBook是一种使用Markdown语法编写的的电子书，并基于Git进行版本管理。 为什么要选择GitBookMarkdown语法简单，格式简洁，编写快速。 Git是目前最优秀的版本控制工具之一，使用Git和Git仓库来管理文档，即确保了文档存储的持久性，也可随时查看历史版本。 GitBook的主要用户群是程序员。MarkDown和Git已经是程序员的必备技能了，因此对于程序员而已，使用Git">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fxifcnopbbj31kg0u0gpm.jpg">
+<meta property="og:updated_time" content="2018-11-23T15:58:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GitBook初步认识">
+<meta name="twitter:description" content="GitBook是一种使用Markdown语法编写的的电子书，并基于Git进行版本管理。 为什么要选择GitBookMarkdown语法简单，格式简洁，编写快速。 Git是目前最优秀的版本控制工具之一，使用Git和Git仓库来管理文档，即确保了文档存储的持久性，也可随时查看历史版本。 GitBook的主要用户群是程序员。MarkDown和Git已经是程序员的必备技能了，因此对于程序员而已，使用Git">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fxifcnopbbj31kg0u0gpm.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://chaolinye.github.io/2018/11/23/gitbook/"/>
+
+
+
+
+
+  <title>GitBook初步认识 | Freedom的编程日志</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Freedom的编程日志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chaolinye.github.io/2018/11/23/gitbook/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="freedom">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Freedom的编程日志">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GitBook初步认识</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-23T23:56:02+08:00">
+                2018-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>GitBook是一种使用Markdown语法编写的的电子书，并基于Git进行版本管理。</p>
+<h2 id="为什么要选择GitBook"><a href="#为什么要选择GitBook" class="headerlink" title="为什么要选择GitBook"></a>为什么要选择GitBook</h2><p>Markdown语法简单，格式简洁，编写快速。</p>
+<p>Git是目前最优秀的版本控制工具之一，使用Git和Git仓库来管理文档，即确保了文档存储的持久性，也可随时查看历史版本。</p>
+<p>GitBook的主要用户群是程序员。MarkDown和Git已经是程序员的必备技能了，因此对于程序员而已，使用GitBook来写电子书或文档是很好的选择</p>
+<h2 id="GitBook的使用场景"><a href="#GitBook的使用场景" class="headerlink" title="GitBook的使用场景"></a>GitBook的使用场景</h2><p>GitBook只是一种编辑电子书的技术，可以根据个人需求灵活使用。下面分享一下我看到的GitBook的使用场景</p>
+<h3 id="生成GitHub项目的文档"><a href="#生成GitHub项目的文档" class="headerlink" title="生成GitHub项目的文档"></a>生成GitHub项目的文档</h3><p>以前GitHub项目的文档也是使用Markdown写的，比如README.MD。<br>不过这种文档和代码混在一起，也比较零散，体验不大好。</p>
+<p>现在已经有不少项目开始使用GitBook结合github-pages生成项目的文档。</p>
+<p>大致的流程是：使用GitBook编辑文档并生成静态页面，然后推送到GitHub项目的gh-pages分支，然后通过 <code>https://username.github.io/projectname</code>来访问Gitbook电子书。</p>
+<a id="more"></a>
+<h3 id="项目团队的简易文档工具"><a href="#项目团队的简易文档工具" class="headerlink" title="项目团队的简易文档工具"></a>项目团队的简易文档工具</h3><p>一个技术团队内部一般都会有不少需要共享的文档，比如</p>
+<ul>
+<li>环境搭建文档</li>
+<li>公共的开发账号</li>
+<li>团队技术栈</li>
+<li>项目技术架构简介</li>
+<li>开发流程简介</li>
+</ul>
+<p>还需要很多其他需要共知的事宜。目前很多团队的这些事项是用多个word、excel文件进行管理，这样会很难保存每个手上的文档都是最新的，而且查找多个文件效率低下。</p>
+<p>要解决这个问题，最好是有一个web网站集中显示这些资料文档。当然，可以自己搭建一个非常好看的web网站，不过这种方式非常耗时。</p>
+<p>使用GitBook，只需要团队有一台可以随便使用和访问的服务器即可。</p>
+<p>大致流程：基于gitbook，使用Markdown编辑团队的文档，并提交到团队的git仓库中。配置git仓库的webhooks, 设置每次提交触发服务器拉取最新的文档，并生成静态网站，暴露给团队成员访问。</p>
+<h3 id="个人的电子书"><a href="#个人的电子书" class="headerlink" title="个人的电子书"></a>个人的电子书</h3><p>代码的世界，知识很多，更新很快，看过想过的东西很容易遗忘。为了减少遗忘率和方便以后查询，记录是比较的方法。一个小的知识点，我们可以用笔记工具(如印象笔记)或者博客来记录。</p>
+<p>但有时你想把一块系统的知识梳理整理成文档或者是书，就可以使用GitBook。创建个人电子书最简单的就是使用 <a href="https://www.gitbook.com/" target="_blank" rel="noopener">GitBook的托管网站</a>来编写和管理。</p>
+<h2 id="GitBook的基本使用"><a href="#GitBook的基本使用" class="headerlink" title="GitBook的基本使用"></a>GitBook的基本使用</h2><p>gitbook是一个基于node.js的命令行工具, 可以将规定结构的markdown编辑的文件生成html静态页面。</p>
+<blockquote>
+<p>gitbook基于node，需要先安装好node环境</p>
+</blockquote>
+<h3 id="安装gitbook"><a href="#安装gitbook" class="headerlink" title="安装gitbook"></a>安装gitbook</h3><p>建议先安装gitbook-cli。gitbook-cli可以用来下载、切换、管理gitbook的版本。<br>在终端中运行以下命令安装gitbook-cli:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g gitbook-cli</span><br></pre></td></tr></table></figure>
+<p>安装完毕后，运行以下命令查看版本，以确认安装成功</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook -V</span><br></pre></td></tr></table></figure>
+<p>查看gitbook目前的版本列表</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook ls-remote</span><br></pre></td></tr></table></figure>
+<p>安装最新的稳定版本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook fetch xxx</span><br></pre></td></tr></table></figure>
+<p>gitbook-cli的更多用法，可以查看help</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook -h</span><br></pre></td></tr></table></figure>
+<h3 id="编写电子书"><a href="#编写电子书" class="headerlink" title="编写电子书"></a>编写电子书</h3><p>运行以下命令初始化一个gitbook目录</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook init</span><br></pre></td></tr></table></figure>
+<p>可以看到目前的目录结构:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ tree</span><br><span class="line">.</span><br><span class="line">├── README.md</span><br><span class="line">├── SUMMARY.md</span><br><span class="line">├── package.json</span><br><span class="line">└── yarn.lock</span><br></pre></td></tr></table></figure>
+<p>其中SUMMARY.md使用编辑电子书的目录结构，比如</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ cat SUMMARY.md</span><br><span class="line"><span class="comment"># Summary</span></span><br><span class="line"></span><br><span class="line">* [Introduction](README.md)</span><br><span class="line">* [Part1](Part1.md)</span><br><span class="line">	* [Part1.1](Part1.1.md)</span><br><span class="line">	* [Part1.2](Part1.2.md)</span><br><span class="line">* [Part2](Part2.md)</span><br><span class="line">	* [Part2.1](Part2.1.md)</span><br><span class="line">	* [Part2.2](Part2.2.md)</span><br></pre></td></tr></table></figure>
+<p>READMER.md用于编写电子书的简介，比如:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Introduction</span></span><br><span class="line"></span><br><span class="line">This is my first gitbook</span><br></pre></td></tr></table></figure>
+<p>这时，可以运行以下命令生成html静态页面</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook build</span><br></pre></td></tr></table></figure>
+<p>然后运行一下命令在本地运行一个web服务器</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook serve</span><br></pre></td></tr></table></figure>
+<p>然后访问本地web服务器地址，查看gitbook的效果如下</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fxifcnopbbj31kg0u0gpm.jpg" alt="my first gitbook"></p>
+<p>gitbook的更多命令，可以查看help</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook <span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+<h2 id="学习资料"><a href="#学习资料" class="headerlink" title="学习资料"></a>学习资料</h2><p>本文主要用于初步认识一下gitbook的概念、使用场景和基本操作。关于gitbook的比较全面的操作方式，可以通过下面的资料来学习:</p>
+<ul>
+<li><p><a href="https://blog.csdn.net/stu059074244/article/details/77767835" target="_blank" rel="noopener">一篇很详细的gitbook博客</a></p>
+</li>
+<li><p><a href="https://docs.gitbook.com/integrations/github" target="_blank" rel="noopener">gitbook.com托管网站官方文档</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/19/node-application/" rel="next" title="node的简单小应用">
+                <i class="fa fa-chevron-left"></i> node的简单小应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">freedom</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要选择GitBook"><span class="nav-number">1.</span> <span class="nav-text">为什么要选择GitBook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitBook的使用场景"><span class="nav-number">2.</span> <span class="nav-text">GitBook的使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成GitHub项目的文档"><span class="nav-number">2.1.</span> <span class="nav-text">生成GitHub项目的文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目团队的简易文档工具"><span class="nav-number">2.2.</span> <span class="nav-text">项目团队的简易文档工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人的电子书"><span class="nav-number">2.3.</span> <span class="nav-text">个人的电子书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitBook的基本使用"><span class="nav-number">3.</span> <span class="nav-text">GitBook的基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装gitbook"><span class="nav-number">3.1.</span> <span class="nav-text">安装gitbook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写电子书"><span class="nav-number">3.2.</span> <span class="nav-text">编写电子书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习资料"><span class="nav-number">4.</span> <span class="nav-text">学习资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">freedom</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
