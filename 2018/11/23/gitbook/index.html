@@ -87,7 +87,7 @@
 <meta property="og:description" content="GitBook是一种使用Markdown语法编写的的电子书，并基于Git进行版本管理。 为什么要选择GitBookMarkdown语法简单，格式简洁，编写快速。 Git是目前最优秀的版本控制工具之一，使用Git和Git仓库来管理文档，即确保了文档存储的持久性，也可随时查看历史版本。 GitBook的主要用户群是程序员。MarkDown和Git已经是程序员的必备技能了，因此对于程序员而已，使用Git">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fxifcnopbbj31kg0u0gpm.jpg">
-<meta property="og:updated_time" content="2018-11-23T15:58:00.000Z">
+<meta property="og:updated_time" content="2018-12-08T01:16:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitBook初步认识">
 <meta name="twitter:description" content="GitBook是一种使用Markdown语法编写的的电子书，并基于Git进行版本管理。 为什么要选择GitBookMarkdown语法简单，格式简洁，编写快速。 Git是目前最优秀的版本控制工具之一，使用Git和Git仓库来管理文档，即确保了文档存储的持久性，也可随时查看历史版本。 GitBook的主要用户群是程序员。MarkDown和Git已经是程序员的必备技能了，因此对于程序员而已，使用Git">
@@ -340,7 +340,7 @@
 </blockquote>
 <h3 id="安装gitbook"><a href="#安装gitbook" class="headerlink" title="安装gitbook"></a>安装gitbook</h3><p>建议先安装gitbook-cli。gitbook-cli可以用来下载、切换、管理gitbook的版本。<br>在终端中运行以下命令安装gitbook-cli:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g gitbook-cli</span><br></pre></td></tr></table></figure>
-<p>安装完毕后，运行以下命令查看版本，以确认安装成功</p>
+<p>安装完毕后，运行以下命令查看版本，以确认安装成功, 首次运行会下载最新稳定版本的gitbook</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook -V</span><br></pre></td></tr></table></figure>
 <p>查看gitbook目前的版本列表</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook ls-remote</span><br></pre></td></tr></table></figure>
@@ -364,6 +364,17 @@
 <p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fxifcnopbbj31kg0u0gpm.jpg" alt="my first gitbook"></p>
 <p>gitbook的更多命令，可以查看help</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook <span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+<h2 id="生成pdf"><a href="#生成pdf" class="headerlink" title="生成pdf"></a>生成pdf</h2><p>gitbook虽然有不错的托管网站和github的pages功能可以提供阅读途径，但是在没有网络或者网络受限的情况下，生成pdf电子书还是有必要的。</p>
+<p>要想生成pdf，需要下载Calibre的<code>ebook-convert</code>依赖，下载地址:<code>https://calibre-ebook.com/download</code></p>
+<p>安装完毕Calibre后，需要把其中的ebook-convert工具加入环境变量中。</p>
+<p>如果是macbook，ebook-convert所在文件夹是<code>/Applications/calibre.app/Contents/MacOS</code>，将这个路径添加到~/.bash_profile中，如</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PATH=/Applications/calibre.app/Contents/MacOS:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> PATH</span><br></pre></td></tr></table></figure>
+<p>然后立即执行.bash_profile，让环境变量配置生效</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>执行以下命令，确认 ebook-convert 配置成功</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ebook-convert -v</span><br></pre></td></tr></table></figure>
+<p>ebook-convert配置成功后，在gitbook项目根目录下运行以下命令即可生成pdf电子书</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook pdf</span><br></pre></td></tr></table></figure>
 <h2 id="学习资料"><a href="#学习资料" class="headerlink" title="学习资料"></a>学习资料</h2><p>本文主要用于初步认识一下gitbook的概念、使用场景和基本操作。关于gitbook的比较全面的操作方式，可以通过下面的资料来学习:</p>
 <ul>
 <li><p><a href="https://blog.csdn.net/stu059074244/article/details/77767835" target="_blank" rel="noopener">一篇很详细的gitbook博客</a></p>
@@ -521,7 +532,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要选择GitBook"><span class="nav-number">1.</span> <span class="nav-text">为什么要选择GitBook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitBook的使用场景"><span class="nav-number">2.</span> <span class="nav-text">GitBook的使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成GitHub项目的文档"><span class="nav-number">2.1.</span> <span class="nav-text">生成GitHub项目的文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目团队的简易文档工具"><span class="nav-number">2.2.</span> <span class="nav-text">项目团队的简易文档工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人的电子书"><span class="nav-number">2.3.</span> <span class="nav-text">个人的电子书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitBook的基本使用"><span class="nav-number">3.</span> <span class="nav-text">GitBook的基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装gitbook"><span class="nav-number">3.1.</span> <span class="nav-text">安装gitbook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写电子书"><span class="nav-number">3.2.</span> <span class="nav-text">编写电子书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习资料"><span class="nav-number">4.</span> <span class="nav-text">学习资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要选择GitBook"><span class="nav-number">1.</span> <span class="nav-text">为什么要选择GitBook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitBook的使用场景"><span class="nav-number">2.</span> <span class="nav-text">GitBook的使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成GitHub项目的文档"><span class="nav-number">2.1.</span> <span class="nav-text">生成GitHub项目的文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目团队的简易文档工具"><span class="nav-number">2.2.</span> <span class="nav-text">项目团队的简易文档工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人的电子书"><span class="nav-number">2.3.</span> <span class="nav-text">个人的电子书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitBook的基本使用"><span class="nav-number">3.</span> <span class="nav-text">GitBook的基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装gitbook"><span class="nav-number">3.1.</span> <span class="nav-text">安装gitbook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写电子书"><span class="nav-number">3.2.</span> <span class="nav-text">编写电子书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成pdf"><span class="nav-number">4.</span> <span class="nav-text">生成pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习资料"><span class="nav-number">5.</span> <span class="nav-text">学习资料</span></a></li></ol></div>
             
 
           </div>
