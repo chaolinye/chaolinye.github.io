@@ -87,7 +87,7 @@
 <meta property="og:description" content="GitBook是一种使用Markdown语法编写的的电子书，并基于Git进行版本管理。 为什么要选择GitBookMarkdown语法简单，格式简洁，编写快速。 Git是目前最优秀的版本控制工具之一，使用Git和Git仓库来管理文档，即确保了文档存储的持久性，也可随时查看历史版本。 GitBook的主要用户群是程序员。MarkDown和Git已经是程序员的必备技能了，因此对于程序员而已，使用Git">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fxifcnopbbj31kg0u0gpm.jpg">
-<meta property="og:updated_time" content="2018-12-08T01:16:57.000Z">
+<meta property="og:updated_time" content="2019-03-23T04:29:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitBook初步认识">
 <meta name="twitter:description" content="GitBook是一种使用Markdown语法编写的的电子书，并基于Git进行版本管理。 为什么要选择GitBookMarkdown语法简单，格式简洁，编写快速。 Git是目前最优秀的版本控制工具之一，使用Git和Git仓库来管理文档，即确保了文档存储的持久性，也可随时查看历史版本。 GitBook的主要用户群是程序员。MarkDown和Git已经是程序员的必备技能了，因此对于程序员而已，使用Git">
@@ -375,12 +375,31 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ebook-convert -v</span><br></pre></td></tr></table></figure>
 <p>ebook-convert配置成功后，在gitbook项目根目录下运行以下命令即可生成pdf电子书</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook pdf</span><br></pre></td></tr></table></figure>
+<h2 id="GitBook-常用插件"><a href="#GitBook-常用插件" class="headerlink" title="GitBook 常用插件"></a>GitBook 常用插件</h2><p>Gitbook 默认自带 5 个插件</p>
+<ul>
+<li>highlight： 代码高亮</li>
+<li>search： 导航栏查询功能（不支持中文）</li>
+<li>sharing：右上角分享功能</li>
+<li>font-settings：字体设置（最上方的”A”符号）</li>
+<li>livereload：为GitBook实时重新加载</li>
+</ul>
+<p>可通过在 book.json 文件中用 <code>-</code> 符号代表去除默认自带的插件, 如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;plugins&quot;: [</span><br><span class="line">    &quot;-search&quot;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>另外，推荐一些好用的 Gitbook 插件</p>
+<ul>
+<li>TOC: <a href="https://plugins.gitbook.com/plugin/atoc" target="_blank" rel="noopener">atoc</a></li>
+<li>导航目录折叠、多级目录: <a href="https://plugins.gitbook.com/plugin/chapter-fold" target="_blank" rel="noopener">chapter-fold</a></li>
+<li>MarkDown流程图: <a href="https://plugins.gitbook.com/plugin/mermaid-gb3" target="_blank" rel="noopener">mermaid-gb3</a></li>
+<li>回到顶部: <a href="https://plugins.gitbook.com/plugin/back-to-top-button" target="_blank" rel="noopener">back-to-top-button</a></li>
+<li>更强大的搜索工具: <a href="https://plugins.gitbook.com/plugin/search-plus" target="_blank" rel="noopener">search-plus</a></li>
+</ul>
+<p>book.json 示例配置:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"title"</span>: <span class="string">"Git Doc"</span>,</span><br><span class="line">    <span class="attr">"authore"</span>: <span class="string">"chaolinye"</span>,</span><br><span class="line">    <span class="attr">"description"</span>: <span class="string">"Git 文档"</span>,</span><br><span class="line">    <span class="attr">"plugin"</span>: [</span><br><span class="line">        <span class="string">"-lunr"</span>,</span><br><span class="line">        <span class="string">"-search"</span>,</span><br><span class="line">        <span class="string">"search-plus"</span>,</span><br><span class="line">        <span class="string">"chapter-fold"</span>,</span><br><span class="line">        <span class="string">"back-to-top-button"</span>,</span><br><span class="line">        <span class="string">"mermaid-gb3"</span>,</span><br><span class="line">        <span class="string">"katex"</span>,</span><br><span class="line">        <span class="string">"atoc"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"pluginsConfig"</span>: &#123;</span><br><span class="line">        <span class="attr">"atoc"</span>: &#123;</span><br><span class="line">            <span class="attr">"addClass"</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">"className"</span>: <span class="string">"atoc"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="学习资料"><a href="#学习资料" class="headerlink" title="学习资料"></a>学习资料</h2><p>本文主要用于初步认识一下gitbook的概念、使用场景和基本操作。关于gitbook的比较全面的操作方式，可以通过下面的资料来学习:</p>
 <ul>
-<li><p><a href="https://blog.csdn.net/stu059074244/article/details/77767835" target="_blank" rel="noopener">一篇很详细的gitbook博客</a></p>
-</li>
-<li><p><a href="https://docs.gitbook.com/integrations/github" target="_blank" rel="noopener">gitbook.com托管网站官方文档</a></p>
-</li>
+<li><a href="https://blog.csdn.net/stu059074244/article/details/77767835" target="_blank" rel="noopener">一篇很详细的gitbook博客</a></li>
+<li><a href="https://docs.gitbook.com/integrations/github" target="_blank" rel="noopener">gitbook.com托管网站官方文档</a></li>
+<li><a href="https://www.jianshu.com/p/427b8bb066e6" target="_blank" rel="noopener">GitBook插件整理</a></li>
 </ul>
 
       
@@ -532,7 +551,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要选择GitBook"><span class="nav-number">1.</span> <span class="nav-text">为什么要选择GitBook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitBook的使用场景"><span class="nav-number">2.</span> <span class="nav-text">GitBook的使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成GitHub项目的文档"><span class="nav-number">2.1.</span> <span class="nav-text">生成GitHub项目的文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目团队的简易文档工具"><span class="nav-number">2.2.</span> <span class="nav-text">项目团队的简易文档工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人的电子书"><span class="nav-number">2.3.</span> <span class="nav-text">个人的电子书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitBook的基本使用"><span class="nav-number">3.</span> <span class="nav-text">GitBook的基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装gitbook"><span class="nav-number">3.1.</span> <span class="nav-text">安装gitbook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写电子书"><span class="nav-number">3.2.</span> <span class="nav-text">编写电子书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成pdf"><span class="nav-number">4.</span> <span class="nav-text">生成pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习资料"><span class="nav-number">5.</span> <span class="nav-text">学习资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要选择GitBook"><span class="nav-number">1.</span> <span class="nav-text">为什么要选择GitBook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitBook的使用场景"><span class="nav-number">2.</span> <span class="nav-text">GitBook的使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成GitHub项目的文档"><span class="nav-number">2.1.</span> <span class="nav-text">生成GitHub项目的文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目团队的简易文档工具"><span class="nav-number">2.2.</span> <span class="nav-text">项目团队的简易文档工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人的电子书"><span class="nav-number">2.3.</span> <span class="nav-text">个人的电子书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitBook的基本使用"><span class="nav-number">3.</span> <span class="nav-text">GitBook的基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装gitbook"><span class="nav-number">3.1.</span> <span class="nav-text">安装gitbook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写电子书"><span class="nav-number">3.2.</span> <span class="nav-text">编写电子书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成pdf"><span class="nav-number">4.</span> <span class="nav-text">生成pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitBook-常用插件"><span class="nav-number">5.</span> <span class="nav-text">GitBook 常用插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习资料"><span class="nav-number">6.</span> <span class="nav-text">学习资料</span></a></li></ol></div>
             
 
           </div>
