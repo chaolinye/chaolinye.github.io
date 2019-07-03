@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="前端," />
 
 
 
@@ -79,26 +79,21 @@
 
 
 
-<meta name="description" content="性能分析大部分场景的前端性能问题都可以使用Chrome的开发者工具 Performance 进行分析">
+<meta name="description" content="问题场景随着组件化的发展，公司不同团队前端的交互主要就是组件之间的集成和调用。每个组件基本都会维护版本号，通过版本号来管理不同版本之间的依赖。但在开发期，团队之间的联调测试会频繁改动代码，如果每改一点代码就升一个版本，会导致版本升级过于频繁，但不升级版本号，由于浏览器存在缓存，其他团队不能正常访问到加了新代码的组件。而每次都手动清除缓存会浪费大量的时间，所以希望能在这种情况下禁用缓存。">
+<meta name="keywords" content="前端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Chrome开发者工具使用场景">
-<meta property="og:url" content="https://chaolinye.github.io/2019/01/16/chrome/index.html">
+<meta property="og:title" content="前端禁用缓存">
+<meta property="og:url" content="https://chaolinye.github.io/2019/07/03/no-cache/index.html">
 <meta property="og:site_name" content="Freedom的编程日志">
-<meta property="og:description" content="性能分析大部分场景的前端性能问题都可以使用Chrome的开发者工具 Performance 进行分析">
+<meta property="og:description" content="问题场景随着组件化的发展，公司不同团队前端的交互主要就是组件之间的集成和调用。每个组件基本都会维护版本号，通过版本号来管理不同版本之间的依赖。但在开发期，团队之间的联调测试会频繁改动代码，如果每改一点代码就升一个版本，会导致版本升级过于频繁，但不升级版本号，由于浏览器存在缓存，其他团队不能正常访问到加了新代码的组件。而每次都手动清除缓存会浪费大量的时间，所以希望能在这种情况下禁用缓存。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fz8rjcajz8j30u00whgok.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fz8ry88xyvj30yy0nkmzo.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fz8rrugcqij30zk0n5jv7.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fz8rujrc6ej30zk03zwfj.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fz8s3vx1gsj31g20pkqa8.jpg">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fz8sa5xazmj31ck0n0n52.jpg">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fz8sbppkmcj30va0n2n2z.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fz8sf386hpj31p00myq8y.jpg">
-<meta property="og:updated_time" content="2019-01-16T14:25:21.000Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g4n1bh837qj315c09a766.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1g4n1k4h0s4j31ee0rok0u.jpg">
+<meta property="og:updated_time" content="2019-07-03T15:13:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chrome开发者工具使用场景">
-<meta name="twitter:description" content="性能分析大部分场景的前端性能问题都可以使用Chrome的开发者工具 Performance 进行分析">
-<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fz8rjcajz8j30u00whgok.jpg">
+<meta name="twitter:title" content="前端禁用缓存">
+<meta name="twitter:description" content="问题场景随着组件化的发展，公司不同团队前端的交互主要就是组件之间的集成和调用。每个组件基本都会维护版本号，通过版本号来管理不同版本之间的依赖。但在开发期，团队之间的联调测试会频繁改动代码，如果每改一点代码就升一个版本，会导致版本升级过于频繁，但不升级版本号，由于浏览器存在缓存，其他团队不能正常访问到加了新代码的组件。而每次都手动清除缓存会浪费大量的时间，所以希望能在这种情况下禁用缓存。">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g4n1bh837qj315c09a766.jpg">
 
 
 
@@ -128,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://chaolinye.github.io/2019/01/16/chrome/"/>
+  <link rel="canonical" href="https://chaolinye.github.io/2019/07/03/no-cache/"/>
 
 
 
 
 
-  <title>Chrome开发者工具使用场景 | Freedom的编程日志</title>
+  <title>前端禁用缓存 | Freedom的编程日志</title>
   
 
 
@@ -251,7 +246,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chaolinye.github.io/2019/01/16/chrome/">
+    <link itemprop="mainEntityOfPage" href="https://chaolinye.github.io/2019/07/03/no-cache/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="freedom">
@@ -268,7 +263,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Chrome开发者工具使用场景</h1>
+          <h1 class="post-title" itemprop="name headline">前端禁用缓存</h1>
         
 
         <div class="post-meta">
@@ -280,8 +275,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-16T22:23:57+08:00">
-                2019-01-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-03T23:12:31+08:00">
+                2019-07-03
               </time>
             
 
@@ -318,38 +313,25 @@
       
 
       
-        <h2 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h2><p>大部分场景的前端性能问题都可以使用Chrome的开发者工具 <strong>Performance</strong> 进行分析</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fz8rjcajz8j30u00whgok.jpg" alt="Performance"></p>
+        <h2 id="问题场景"><a href="#问题场景" class="headerlink" title="问题场景"></a>问题场景</h2><p>随着组件化的发展，公司不同团队前端的交互主要就是组件之间的集成和调用。每个组件基本都会维护版本号，通过版本号来管理不同版本之间的依赖。但在开发期，团队之间的联调测试会频繁改动代码，如果每改一点代码就升一个版本，会导致版本升级过于频繁，但不升级版本号，由于浏览器存在缓存，其他团队不能正常访问到加了新代码的组件。而每次都手动清除缓存会浪费大量的时间，所以希望能在这种情况下禁用缓存。</p>
 <a id="more"></a>
-<p>当我们选中图中所标示的实心圆按钮，Performance 会开始帮我们记录我们后续的交互操作；当我们选中圆箭头按钮，Performance 会将页面重新加载，计算加载过程中的性能表现。<br>tips：使用 Performance 工具时，为了规避其它 Chrome 插件对页面的性能影响，我们最好在无痕模式下打开页面</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fz8ry88xyvj30yy0nkmzo.jpg" alt="无痕模式"></p>
-<p>选中 Performance 面板中的圆箭头，来看一下页面加载过程中的性能表现:</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fz8rrugcqij30zk0n5jv7.jpg" alt="Performance Report"></p>
-<p>从上到下，依次为概述面板、详情面板。</p>
-<h3 id="概述面板"><a href="#概述面板" class="headerlink" title="概述面板"></a>概述面板</h3><p>我们先来观察一下概述面板，了解页面的基本表现：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fz8rujrc6ej30zk03zwfj.jpg" alt="概述面板"></p>
-<p>我们看右上角的三个栏目：FPS、CPU 和 NET。</p>
-<p>FPS：这是一个和动画性能密切相关的指标，它表示每一秒的帧数。图中绿色柱状越高表示帧率越高，体验就越流畅。若出现红色块，则代表长时间帧，很可能会出现卡顿。图中以绿色为主，偶尔出现红块，说明网页性能并不糟糕，但仍有可优化的空间。</p>
-<p>CPU：表示CPU的使用情况，不同的颜色片段代表着消耗CPU资源的不同事件类型。这部分的图像和下文详情面板中的Summary内容有对应关系，我们可以结合这两者挖掘性能瓶颈。</p>
-<p>NET：粗略的展示了各请求的耗时与前后顺序。这个指标一般来说帮助不大。</p>
-<h3 id="详情面板"><a href="#详情面板" class="headerlink" title="详情面板"></a>详情面板</h3><p>详情面板中的内容有很多。但一般来说，我们会主要去看 Main 栏目下的火焰图和 Summary 提供给我们的饼图——这两者和概述面板中的 CPU 一栏结合，可以帮我们迅速定位性能瓶颈（如下图）。</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fz8s3vx1gsj31g20pkqa8.jpg" alt="详情面板"></p>
-<p>先看 CPU 图表和 Summary 饼图。CPU 图表中，我们可以根据颜色填充的饱满程度，确定 CPU 的忙闲，进而了解该页面的总的任务量。而 Summary 饼图则以一种直观的方式告诉了我们，哪个类型的任务最耗时（从本例来看是脚本执行过程）。这样我们在优化的时候，就可以抓到“主要矛盾”，进而有的放矢地开展后续的工作了。</p>
-<p>再看 Main 提供给我们的火焰图。这个火焰图非常关键，它展示了整个运行时主进程所做的每一件事情（包括加载、脚本运行、渲染、布局、绘制等）。x 轴表示随时间的记录。每个长条就代表一个活动。更宽的条形意味着事件需要更长时间。y 轴表示调用堆栈，我们可以看到事件是相互堆叠的，上层的事件触发了下层的事件。</p>
-<p>CPU 图标和 Summary 图都是按照“类型”给我们提供性能信息，而 Main 火焰图则将粒度细化到了每一个函数的调用。到底是从哪个过程开始出问题、是哪个函数拖了后腿、又是哪个事件触发了这个函数，这些具体的、细致的问题都将在 Main 火焰图中得到解答。</p>
-<h2 id="浏览器卡死定位"><a href="#浏览器卡死定位" class="headerlink" title="浏览器卡死定位"></a>浏览器卡死定位</h2><p>浏览器卡死主要有两种可能性</p>
-<ul>
-<li>后台请求一直不放回</li>
-<li>死循环或者事件黑洞</li>
-</ul>
-<h3 id="后台请求卡死"><a href="#后台请求卡死" class="headerlink" title="后台请求卡死"></a>后台请求卡死</h3><p>后台请求卡死的排查可以使用Chrome开发者工具的 <strong>Network</strong> 来进行</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fz8sa5xazmj31ck0n0n52.jpg" alt="Network"></p>
-<p>通过请求是否没有响应头来排查卡死的后台请求</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fz8sbppkmcj30va0n2n2z.jpg" alt="Network"></p>
-<h3 id="死循环或者事件黑洞"><a href="#死循环或者事件黑洞" class="headerlink" title="死循环或者事件黑洞"></a>死循环或者事件黑洞</h3><p>这种情况可以使用Chrome开发者工具的 <strong>Source</strong> 来进行定位</p>
-<p>在卡死的情况下通过点击 Source 右侧的暂停按钮定位死循环的堆栈</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fz8sf386hpj31p00myq8y.jpg" alt="Source"></p>
-<p>通过不断重复的堆栈定位死循环代码</p>
+<h2 id="禁用缓存的方法"><a href="#禁用缓存的方法" class="headerlink" title="禁用缓存的方法"></a>禁用缓存的方法</h2><p>一般，前端开发者在开发过程中会经常使用 <code>Chrome</code> 开发者工具禁用缓存</p>
+<p>禁用方法: <code>F12</code> -&gt; <code>Network</code> -&gt; 勾选 <code>Disable Cache</code></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g4n1bh837qj315c09a766.jpg" alt="F12 禁用缓存"></p>
+<p>勾选后，随便打开一个网址</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1g4n1k4h0s4j31ee0rok0u.jpg" alt="禁用缓存后"></p>
+<p>可以看到每个请求都会带上这样一个请求头 <code>Cache-Control: no-cache</code></p>
+<p>这个是HTTP协议定义的缓存策略的一种，如果请求头中设置了 <code>no-cache</code> 的缓存策略，则浏览器和服务器(需要服务器支持)都不会缓存请求的资源。因此通过在前端的请求中设置 <code>Cache-Control: no-cache</code> 请求头可以禁用缓存。</p>
+<p>如果前端使用的是 <code>axios</code> http 库进行后台请求，设置如下:</p>
+<pre><code class="js"><span class="comment">// Set config defaults when creating the instance</span>
+<span class="keyword">const</span> instance = axios.create({
+  baseURL: <span class="string">'https://api.example.com'</span>
+});
+
+<span class="comment">// Alter defaults after instance has been created</span>
+instance.defaults.headers.common[<span class="string">'Cache-Control'</span>] = <span class="string">'no-cache'</span>;
+</code></pre>
+<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><p>禁用缓存会影响前端资源加载性能，所以在性能测试环境、预上线环境、生产环境等使用。<br>可以在开发环境或者功能测试环境这种会频繁发布小代码而又不关心性能的环境禁用缓存。</p>
 
       
     </div>
@@ -365,6 +347,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
 
       
       
@@ -374,8 +362,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/01/head-first-git/" rel="next" title="Git 入门教程">
-                <i class="fa fa-chevron-left"></i> Git 入门教程
+              <a href="/2019/03/23/arthas/" rel="next" title="Arthas -- Java 应用在线诊断神器">
+                <i class="fa fa-chevron-left"></i> Arthas -- Java 应用在线诊断神器
               </a>
             
           </div>
@@ -383,10 +371,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/10/css/" rel="prev" title="规避 css 样式全局污染">
-                规避 css 样式全局污染 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -509,7 +493,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#性能分析"><span class="nav-number">1.</span> <span class="nav-text">性能分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述面板"><span class="nav-number">1.1.</span> <span class="nav-text">概述面板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详情面板"><span class="nav-number">1.2.</span> <span class="nav-text">详情面板</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器卡死定位"><span class="nav-number">2.</span> <span class="nav-text">浏览器卡死定位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#后台请求卡死"><span class="nav-number">2.1.</span> <span class="nav-text">后台请求卡死</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#死循环或者事件黑洞"><span class="nav-number">2.2.</span> <span class="nav-text">死循环或者事件黑洞</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题场景"><span class="nav-number">1.</span> <span class="nav-text">问题场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁用缓存的方法"><span class="nav-number">2.</span> <span class="nav-text">禁用缓存的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适用场景"><span class="nav-number">3.</span> <span class="nav-text">适用场景</span></a></li></ol></div>
             
 
           </div>
