@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="前端," />
+  <meta name="keywords" content="Vue, 前端," />
 
 
 
@@ -79,21 +79,18 @@
 
 
 
-<meta name="description" content="问题场景随着组件化的发展，公司不同团队前端的交互主要就是组件之间的集成和调用。每个组件基本都会维护版本号，通过版本号来管理不同版本之间的依赖。但在开发期，团队之间的联调测试会频繁改动代码，如果每改一点代码就升一个版本，会导致版本升级过于频繁，但不升级版本号，由于浏览器存在缓存，其他团队不能正常访问到加了新代码的组件。而每次都手动清除缓存会浪费大量的时间，所以希望能在这种情况下禁用缓存。">
-<meta name="keywords" content="前端">
+<meta name="description" content="在大型应用中，我们可能需要将应用分割成小一些的代码块，并且只在需要的时候才从服务器加载一个模块。 123456new Vue(&amp;#123;  // ...  components: &amp;#123;    &apos;my-component&apos;: () =&amp;gt; import(&apos;./my-async-component&apos;)  &amp;#125;&amp;#125;)">
+<meta name="keywords" content="Vue, 前端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端禁用缓存">
-<meta property="og:url" content="https://chaolinye.github.io/2019/07/03/no-cache/index.html">
+<meta property="og:title" content="Vue 异步组件">
+<meta property="og:url" content="https://chaolinye.github.io/2019/07/06/vue-async/index.html">
 <meta property="og:site_name" content="Freedom的编程日志">
-<meta property="og:description" content="问题场景随着组件化的发展，公司不同团队前端的交互主要就是组件之间的集成和调用。每个组件基本都会维护版本号，通过版本号来管理不同版本之间的依赖。但在开发期，团队之间的联调测试会频繁改动代码，如果每改一点代码就升一个版本，会导致版本升级过于频繁，但不升级版本号，由于浏览器存在缓存，其他团队不能正常访问到加了新代码的组件。而每次都手动清除缓存会浪费大量的时间，所以希望能在这种情况下禁用缓存。">
+<meta property="og:description" content="在大型应用中，我们可能需要将应用分割成小一些的代码块，并且只在需要的时候才从服务器加载一个模块。 123456new Vue(&amp;#123;  // ...  components: &amp;#123;    &apos;my-component&apos;: () =&amp;gt; import(&apos;./my-async-component&apos;)  &amp;#125;&amp;#125;)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g4n1bh837qj315c09a766.jpg">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1g4n1k4h0s4j31ee0rok0u.jpg">
-<meta property="og:updated_time" content="2019-07-03T15:13:19.000Z">
+<meta property="og:updated_time" content="2019-07-06T03:07:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端禁用缓存">
-<meta name="twitter:description" content="问题场景随着组件化的发展，公司不同团队前端的交互主要就是组件之间的集成和调用。每个组件基本都会维护版本号，通过版本号来管理不同版本之间的依赖。但在开发期，团队之间的联调测试会频繁改动代码，如果每改一点代码就升一个版本，会导致版本升级过于频繁，但不升级版本号，由于浏览器存在缓存，其他团队不能正常访问到加了新代码的组件。而每次都手动清除缓存会浪费大量的时间，所以希望能在这种情况下禁用缓存。">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g4n1bh837qj315c09a766.jpg">
+<meta name="twitter:title" content="Vue 异步组件">
+<meta name="twitter:description" content="在大型应用中，我们可能需要将应用分割成小一些的代码块，并且只在需要的时候才从服务器加载一个模块。 123456new Vue(&amp;#123;  // ...  components: &amp;#123;    &apos;my-component&apos;: () =&amp;gt; import(&apos;./my-async-component&apos;)  &amp;#125;&amp;#125;)">
 
 
 
@@ -123,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://chaolinye.github.io/2019/07/03/no-cache/"/>
+  <link rel="canonical" href="https://chaolinye.github.io/2019/07/06/vue-async/"/>
 
 
 
 
 
-  <title>前端禁用缓存 | Freedom的编程日志</title>
+  <title>Vue 异步组件 | Freedom的编程日志</title>
   
 
 
@@ -246,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chaolinye.github.io/2019/07/03/no-cache/">
+    <link itemprop="mainEntityOfPage" href="https://chaolinye.github.io/2019/07/06/vue-async/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="freedom">
@@ -263,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">前端禁用缓存</h1>
+          <h1 class="post-title" itemprop="name headline">Vue 异步组件</h1>
         
 
         <div class="post-meta">
@@ -275,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-03T23:12:31+08:00">
-                2019-07-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-06T11:06:26+08:00">
+                2019-07-06
               </time>
             
 
@@ -313,25 +310,17 @@
       
 
       
-        <h2 id="问题场景"><a href="#问题场景" class="headerlink" title="问题场景"></a>问题场景</h2><p>随着组件化的发展，公司不同团队前端的交互主要就是组件之间的集成和调用。每个组件基本都会维护版本号，通过版本号来管理不同版本之间的依赖。但在开发期，团队之间的联调测试会频繁改动代码，如果每改一点代码就升一个版本，会导致版本升级过于频繁，但不升级版本号，由于浏览器存在缓存，其他团队不能正常访问到加了新代码的组件。而每次都手动清除缓存会浪费大量的时间，所以希望能在这种情况下禁用缓存。</p>
+        <p>在大型应用中，我们可能需要将应用分割成小一些的代码块，并且只在需要的时候才从服务器加载一个模块。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  components: &#123;</span><br><span class="line">    <span class="string">'my-component'</span>: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./my-async-component'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h2 id="禁用缓存的方法"><a href="#禁用缓存的方法" class="headerlink" title="禁用缓存的方法"></a>禁用缓存的方法</h2><p>一般，前端开发者在开发过程中会经常使用 <code>Chrome</code> 开发者工具禁用缓存</p>
-<p>禁用方法: <code>F12</code> -&gt; <code>Network</code> -&gt; 勾选 <code>Disable Cache</code></p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g4n1bh837qj315c09a766.jpg" alt="F12 禁用缓存"></p>
-<p>勾选后，随便打开一个网址</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1g4n1k4h0s4j31ee0rok0u.jpg" alt="禁用缓存后"></p>
-<p>可以看到每个请求都会带上这样一个请求头 <code>Cache-Control: no-cache</code></p>
-<p>这个是HTTP协议定义的缓存策略的一种，如果请求头中设置了 <code>no-cache</code> 的缓存策略，则浏览器和服务器(需要服务器支持)都不会缓存请求的资源。因此通过在前端的请求中设置 <code>Cache-Control: no-cache</code> 请求头可以禁用缓存。</p>
-<p>如果前端使用的是 <code>axios</code> http 库进行后台请求，设置如下:</p>
-<pre><code class="js"><span class="comment">// Set config defaults when creating the instance</span>
-<span class="keyword">const</span> instance = axios.create({
-  baseURL: <span class="string">'https://api.example.com'</span>
-});
-
-<span class="comment">// Alter defaults after instance has been created</span>
-instance.defaults.headers.common[<span class="string">'Cache-Control'</span>] = <span class="string">'no-cache'</span>;
-</code></pre>
-<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><p>禁用缓存会影响前端资源加载性能，所以在性能测试环境、预上线环境、生产环境等使用。<br>可以在开发环境或者功能测试环境这种会频繁发布小代码而又不关心性能的环境禁用缓存。</p>
+<p>vue-loader 和 webpack 会对这种写法进行代码分割</p>
+<p>打包输出示例</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">File            Size        Gzipped</span><br><span class="line">dist\index.js   624.50 KiB      141.10 KiB</span><br><span class="line">dist\1.js       156.00 KiB      33.45 KiB</span><br></pre></td></tr></table></figure>
+<p>也可以指定分包名字</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  components: &#123;</span><br><span class="line">    <span class="string">'my-component'</span>: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: "async" */</span><span class="string">'./my-async-component'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>打包结果</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">File            Size        Gzipped</span><br><span class="line">dist\index.js   624.50 KiB      141.10 KiB</span><br><span class="line">dist\async.js       156.00 KiB      33.45 KiB</span><br></pre></td></tr></table></figure>
+<p>更多关于Vue 异步组件的介绍可详看 <a href="https://cn.vuejs.org/v2/guide/components-dynamic-async.html" target="_blank" rel="noopener">官方文档</a></p>
 
       
     </div>
@@ -349,7 +338,7 @@ instance.defaults.headers.common[<span class="string">'Cache-Control'</span>] = 
       
         <div class="post-tags">
           
-            <a href="/tags/前端/" rel="tag"># 前端</a>
+            <a href="/tags/Vue-前端/" rel="tag"># Vue, 前端</a>
           
         </div>
       
@@ -362,8 +351,8 @@ instance.defaults.headers.common[<span class="string">'Cache-Control'</span>] = 
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/23/arthas/" rel="next" title="Arthas -- Java 应用在线诊断神器">
-                <i class="fa fa-chevron-left"></i> Arthas -- Java 应用在线诊断神器
+              <a href="/2019/07/03/no-cache/" rel="next" title="前端禁用缓存">
+                <i class="fa fa-chevron-left"></i> 前端禁用缓存
               </a>
             
           </div>
@@ -371,10 +360,6 @@ instance.defaults.headers.common[<span class="string">'Cache-Control'</span>] = 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/06/vue-async/" rel="prev" title="Vue 异步组件">
-                Vue 异步组件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -426,17 +411,8 @@ instance.defaults.headers.common[<span class="string">'Cache-Control'</span>] = 
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -487,22 +463,6 @@ instance.defaults.headers.common[<span class="string">'Cache-Control'</span>] = 
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题场景"><span class="nav-number">1.</span> <span class="nav-text">问题场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁用缓存的方法"><span class="nav-number">2.</span> <span class="nav-text">禁用缓存的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适用场景"><span class="nav-number">3.</span> <span class="nav-text">适用场景</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
