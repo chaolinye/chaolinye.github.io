@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Spring Boot 的事件是基于 Spring 的事件机制来实现的，但是两者是隔离的  Spring Boot 所用的 ApplicationEventMulticaster 是单独的实例，并不是 ApplicationContext 里的 Bean 实例, 所以两者是隔离的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot Events and Listeners">
+<meta property="og:url" content="https://chaolinye.github.io/2020/01/17/spring-events/index.html">
+<meta property="og:site_name" content="Freedom的编程日志">
+<meta property="og:description" content="Spring Boot 的事件是基于 Spring 的事件机制来实现的，但是两者是隔离的  Spring Boot 所用的 ApplicationEventMulticaster 是单独的实例，并不是 ApplicationContext 里的 Bean 实例, 所以两者是隔离的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gazssc73r3j314p0u07g6.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gazstys5t6j325u0cu7cn.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gaztjsii81j31ay0u0k1t.jpg">
+<meta property="og:updated_time" content="2020-01-17T12:48:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Boot Events and Listeners">
+<meta name="twitter:description" content="Spring Boot 的事件是基于 Spring 的事件机制来实现的，但是两者是隔离的  Spring Boot 所用的 ApplicationEventMulticaster 是单独的实例，并不是 ApplicationContext 里的 Bean 实例, 所以两者是隔离的">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gazssc73r3j314p0u07g6.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://chaolinye.github.io/2020/01/17/spring-events/"/>
+
+
+
+
+
+  <title>Spring Boot Events and Listeners | Freedom的编程日志</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Freedom的编程日志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chaolinye.github.io/2020/01/17/spring-events/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="freedom">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Freedom的编程日志">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring Boot Events and Listeners</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-17T20:45:44+08:00">
+                2020-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Spring Boot 的事件是基于 Spring 的事件机制来实现的，但是两者是隔离的</p>
+<blockquote>
+<p>Spring Boot 所用的 <code>ApplicationEventMulticaster</code> 是单独的实例，并不是 <code>ApplicationContext</code> 里的 Bean 实例, 所以两者是隔离的</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Spring-Boot-事件"><a href="#Spring-Boot-事件" class="headerlink" title="Spring Boot 事件"></a>Spring Boot 事件</h2><p><a href="https://docs.spring.io/spring-boot/docs/2.2.3.BUILD-SNAPSHOT/reference/htmlsingle/#boot-features-application-events-and-listeners" target="_blank" rel="noopener">官方文档</a>:</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1gazssc73r3j314p0u07g6.jpg" alt="spring boot event"></p>
+<p>Spring Boot 事件的基类是 <code>SpringApplicationEvent</code>, 共有 7 个子类</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1gazstys5t6j325u0cu7cn.jpg" alt=""></p>
+<p>Spring Boot 的 <code>Listener</code> 有两种方式进行装配</p>
+<h3 id="通过-spring-factories-配置文件进行装配"><a href="#通过-spring-factories-配置文件进行装配" class="headerlink" title="通过 spring.factories 配置文件进行装配"></a>通过 <code>spring.factories</code> 配置文件进行装配</h3><p>官方示例:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># Application Listeners</span><br><span class="line">org.springframework.context.ApplicationListener=\</span><br><span class="line">org.springframework.boot.ClearCachesApplicationListener,\</span><br><span class="line">org.springframework.boot.builder.ParentContextCloserApplicationListener,\</span><br><span class="line">org.springframework.boot.context.FileEncodingApplicationListener,\</span><br><span class="line">org.springframework.boot.context.config.AnsiOutputApplicationListener,\</span><br><span class="line">org.springframework.boot.context.config.ConfigFileApplicationListener,\</span><br><span class="line">org.springframework.boot.context.config.DelegatingApplicationListener,\</span><br><span class="line">org.springframework.boot.context.logging.ClasspathLoggingApplicationListener,\</span><br><span class="line">org.springframework.boot.context.logging.LoggingApplicationListener,\</span><br><span class="line">org.springframework.boot.liquibase.LiquibaseServiceLocatorApplicationListener</span><br></pre></td></tr></table></figure>
+<p>在 <code>SpringApplication</code> 的构造方法里进行装配:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">SpringApplication</span><span class="params">(ResourceLoader resourceLoader, Class&lt;?&gt;... primarySources)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.resourceLoader = resourceLoader;</span><br><span class="line">		Assert.notNull(primarySources, <span class="string">"PrimarySources must not be null"</span>);</span><br><span class="line">		<span class="keyword">this</span>.primarySources = <span class="keyword">new</span> LinkedHashSet&lt;&gt;(Arrays.asList(primarySources));</span><br><span class="line">		<span class="keyword">this</span>.webApplicationType = WebApplicationType.deduceFromClasspath();</span><br><span class="line">		setInitializers((Collection) getSpringFactoriesInstances(ApplicationContextInitializer.class));</span><br><span class="line">		setListeners((Collection) getSpringFactoriesInstances(ApplicationListener.class));</span><br><span class="line">		<span class="keyword">this</span>.mainApplicationClass = deduceMainApplicationClass();</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="通过-context-listener-classes-property-进行装配"><a href="#通过-context-listener-classes-property-进行装配" class="headerlink" title="通过 context.listener.classes property 进行装配"></a>通过 <code>context.listener.classes</code> property 进行装配</h3><p>示例:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">context.listener.classes=org.leaf.headfirstspringboot.listener.TestListener</span><br></pre></td></tr></table></figure>
+<p>在 <code>DelegatingApplicationListener</code> 里进行装配</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DelegatingApplicationListener</span> <span class="keyword">implements</span> <span class="title">ApplicationListener</span>&lt;<span class="title">ApplicationEvent</span>&gt;, <span class="title">Ordered</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// <span class="doctag">NOTE:</span> Similar to org.springframework.web.context.ContextLoader</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PROPERTY_NAME = <span class="string">"context.listener.classes"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> order = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> SimpleApplicationEventMulticaster multicaster;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onApplicationEvent</span><span class="params">(ApplicationEvent event)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (event <span class="keyword">instanceof</span> ApplicationEnvironmentPreparedEvent) &#123;</span><br><span class="line">			List&lt;ApplicationListener&lt;ApplicationEvent&gt;&gt; delegates = getListeners(</span><br><span class="line">					((ApplicationEnvironmentPreparedEvent) event).getEnvironment());</span><br><span class="line">			<span class="keyword">if</span> (delegates.isEmpty()) &#123;</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">this</span>.multicaster = <span class="keyword">new</span> SimpleApplicationEventMulticaster();</span><br><span class="line">			<span class="keyword">for</span> (ApplicationListener&lt;ApplicationEvent&gt; listener : delegates) &#123;</span><br><span class="line">				<span class="keyword">this</span>.multicaster.addApplicationListener(listener);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.multicaster != <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">this</span>.multicaster.multicastEvent(event);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">	<span class="keyword">private</span> List&lt;ApplicationListener&lt;ApplicationEvent&gt;&gt; getListeners(ConfigurableEnvironment environment) &#123;</span><br><span class="line">		<span class="keyword">if</span> (environment == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">		&#125;</span><br><span class="line">		String classNames = environment.getProperty(PROPERTY_NAME);</span><br><span class="line">		List&lt;ApplicationListener&lt;ApplicationEvent&gt;&gt; listeners = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">		<span class="keyword">if</span> (StringUtils.hasLength(classNames)) &#123;</span><br><span class="line">			<span class="keyword">for</span> (String className : StringUtils.commaDelimitedListToSet(classNames)) &#123;</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					Class&lt;?&gt; clazz = ClassUtils.forName(className, ClassUtils.getDefaultClassLoader());</span><br><span class="line">					Assert.isAssignable(ApplicationListener.class, clazz,</span><br><span class="line">							<span class="string">"class ["</span> + className + <span class="string">"] must implement ApplicationListener"</span>);</span><br><span class="line">					listeners.add((ApplicationListener&lt;ApplicationEvent&gt;) BeanUtils.instantiateClass(clazz));</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">					<span class="keyword">throw</span> <span class="keyword">new</span> ApplicationContextException(<span class="string">"Failed to load context listener class ["</span> + className + <span class="string">"]"</span>,</span><br><span class="line">							ex);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		AnnotationAwareOrderComparator.sort(listeners);</span><br><span class="line">		<span class="keyword">return</span> listeners;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Spring-事件"><a href="#Spring-事件" class="headerlink" title="Spring 事件"></a>Spring 事件</h2><p>Spring 事件的基类是 <code>ApplicationEvent</code>， 主要事件:</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1gaztjsii81j31ay0u0k1t.jpg" alt=""></p>
+<p>Spring 的 <code>Listener</code> 从组件中寻找，有两种定义方式</p>
+<h3 id="实现-ApplicationListener-lt-gt-接口的-Bean"><a href="#实现-ApplicationListener-lt-gt-接口的-Bean" class="headerlink" title="实现 ApplicationListener&lt;?&gt; 接口的 Bean"></a>实现 <code>ApplicationListener&lt;?&gt;</code> 接口的 <code>Bean</code></h3><p>示例:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestApplicationListerner</span> <span class="keyword">implements</span> <span class="title">ApplicationListener</span>&lt;<span class="title">ContextRefreshedEvent</span>&gt; </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onApplicationEvent</span><span class="params">(ContextRefreshedEvent event)</span> </span>&#123;</span><br><span class="line">        log.info(<span class="string">"listen contextRefreshedEvent"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 <code>AbstractApplicationContext#registerListeners</code> 进行装配:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">registerListeners</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// Register statically specified listeners first.</span></span><br><span class="line">	<span class="keyword">for</span> (ApplicationListener&lt;?&gt; listener : getApplicationListeners()) &#123;</span><br><span class="line">		getApplicationEventMulticaster().addApplicationListener(listener);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Do not initialize FactoryBeans here: We need to leave all regular beans</span></span><br><span class="line">	<span class="comment">// uninitialized to let post-processors apply to them!</span></span><br><span class="line">	String[] listenerBeanNames = getBeanNamesForType(ApplicationListener.class, <span class="keyword">true</span>, <span class="keyword">false</span>);</span><br><span class="line">	<span class="keyword">for</span> (String listenerBeanName : listenerBeanNames) &#123;</span><br><span class="line">		getApplicationEventMulticaster().addApplicationListenerBean(listenerBeanName);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Publish early application events now that we finally have a multicaster...</span></span><br><span class="line">	Set&lt;ApplicationEvent&gt; earlyEventsToProcess = <span class="keyword">this</span>.earlyApplicationEvents;</span><br><span class="line">	<span class="keyword">this</span>.earlyApplicationEvents = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">if</span> (earlyEventsToProcess != <span class="keyword">null</span>) &#123;</span><br><span class="line">		<span class="keyword">for</span> (ApplicationEvent earlyEvent : earlyEventsToProcess) &#123;</span><br><span class="line">			getApplicationEventMulticaster().multicastEvent(earlyEvent);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Bean-中用-EventListener-注解的方法"><a href="#Bean-中用-EventListener-注解的方法" class="headerlink" title="Bean 中用 @EventListener 注解的方法"></a>Bean 中用 <code>@EventListener</code> 注解的方法</h3><p>示例:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestEventListener</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@EventListener</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">listenEvent</span><span class="params">(ContextRefreshedEvent event)</span></span>&#123;</span><br><span class="line">        log.info(<span class="string">"EventListener method listen ContextRefreshedEvent"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 <code>EventListenerMethodProcessor#afterSingletonsInstantiated</code> 进行装配</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterSingletonsInstantiated</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ConfigurableListableBeanFactory beanFactory = <span class="keyword">this</span>.beanFactory;</span><br><span class="line">	Assert.state(<span class="keyword">this</span>.beanFactory != <span class="keyword">null</span>, <span class="string">"No ConfigurableListableBeanFactory set"</span>);</span><br><span class="line">	String[] beanNames = beanFactory.getBeanNamesForType(Object.class);</span><br><span class="line">	<span class="keyword">for</span> (String beanName : beanNames) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!ScopedProxyUtils.isScopedTarget(beanName)) &#123;</span><br><span class="line">			Class&lt;?&gt; type = <span class="keyword">null</span>;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				type = AutoProxyUtils.determineTargetClass(beanFactory, beanName);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">catch</span> (Throwable ex) &#123;</span><br><span class="line">				<span class="comment">// An unresolvable bean type, probably from a lazy bean - let's ignore it.</span></span><br><span class="line">				<span class="keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">					logger.debug(<span class="string">"Could not resolve target class for bean with name '"</span> + beanName + <span class="string">"'"</span>, ex);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (type != <span class="keyword">null</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span> (ScopedObject.class.isAssignableFrom(type)) &#123;</span><br><span class="line">					<span class="keyword">try</span> &#123;</span><br><span class="line">						Class&lt;?&gt; targetClass = AutoProxyUtils.determineTargetClass(</span><br><span class="line">								beanFactory, ScopedProxyUtils.getTargetBeanName(beanName));</span><br><span class="line">						<span class="keyword">if</span> (targetClass != <span class="keyword">null</span>) &#123;</span><br><span class="line">							type = targetClass;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">catch</span> (Throwable ex) &#123;</span><br><span class="line">						<span class="comment">// An invalid scoped proxy arrangement - let's ignore it.</span></span><br><span class="line">						<span class="keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">							logger.debug(<span class="string">"Could not resolve target bean for scoped proxy '"</span> + beanName + <span class="string">"'"</span>, ex);</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					processBean(beanName, type);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">catch</span> (Throwable ex) &#123;</span><br><span class="line">					<span class="keyword">throw</span> <span class="keyword">new</span> BeanInitializationException(<span class="string">"Failed to process @EventListener "</span> +</span><br><span class="line">							<span class="string">"annotation on bean with name '"</span> + beanName + <span class="string">"'"</span>, ex);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">processBean</span><span class="params">(<span class="keyword">final</span> String beanName, <span class="keyword">final</span> Class&lt;?&gt; targetType)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!<span class="keyword">this</span>.nonAnnotatedClasses.contains(targetType) &amp;&amp;</span><br><span class="line">			!targetType.getName().startsWith(<span class="string">"java"</span>) &amp;&amp;</span><br><span class="line">			!isSpringContainerClass(targetType)) &#123;</span><br><span class="line"></span><br><span class="line">		Map&lt;Method, EventListener&gt; annotatedMethods = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			annotatedMethods = MethodIntrospector.selectMethods(targetType,</span><br><span class="line">					(MethodIntrospector.MetadataLookup&lt;EventListener&gt;) method -&gt;</span><br><span class="line">							AnnotatedElementUtils.findMergedAnnotation(method, EventListener.class));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span> (Throwable ex) &#123;</span><br><span class="line">			<span class="comment">// An unresolvable type in a method signature, probably from a lazy bean - let's ignore it.</span></span><br><span class="line">			<span class="keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">				logger.debug(<span class="string">"Could not resolve methods for bean with name '"</span> + beanName + <span class="string">"'"</span>, ex);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (CollectionUtils.isEmpty(annotatedMethods)) &#123;</span><br><span class="line">			<span class="keyword">this</span>.nonAnnotatedClasses.add(targetType);</span><br><span class="line">			<span class="keyword">if</span> (logger.isTraceEnabled()) &#123;</span><br><span class="line">				logger.trace(<span class="string">"No @EventListener annotations found on bean class: "</span> + targetType.getName());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// Non-empty set of methods</span></span><br><span class="line">			ConfigurableApplicationContext context = <span class="keyword">this</span>.applicationContext;</span><br><span class="line">			Assert.state(context != <span class="keyword">null</span>, <span class="string">"No ApplicationContext set"</span>);</span><br><span class="line">			List&lt;EventListenerFactory&gt; factories = <span class="keyword">this</span>.eventListenerFactories;</span><br><span class="line">			Assert.state(factories != <span class="keyword">null</span>, <span class="string">"EventListenerFactory List not initialized"</span>);</span><br><span class="line">			<span class="keyword">for</span> (Method method : annotatedMethods.keySet()) &#123;</span><br><span class="line">				<span class="keyword">for</span> (EventListenerFactory factory : factories) &#123;</span><br><span class="line">					<span class="keyword">if</span> (factory.supportsMethod(method)) &#123;</span><br><span class="line">						Method methodToUse = AopUtils.selectInvocableMethod(method, context.getType(beanName));</span><br><span class="line">						ApplicationListener&lt;?&gt; applicationListener =</span><br><span class="line">								factory.createApplicationListener(beanName, targetType, methodToUse);</span><br><span class="line">						<span class="keyword">if</span> (applicationListener <span class="keyword">instanceof</span> ApplicationListenerMethodAdapter) &#123;</span><br><span class="line">							((ApplicationListenerMethodAdapter) applicationListener).init(context, <span class="keyword">this</span>.evaluator);</span><br><span class="line">						&#125;</span><br><span class="line">						context.addApplicationListener(applicationListener);</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">				logger.debug(annotatedMethods.size() + <span class="string">" @EventListener methods processed on bean '"</span> +</span><br><span class="line">						beanName + <span class="string">"': "</span> + annotatedMethods);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://docs.spring.io/spring-boot/docs/2.2.3.BUILD-SNAPSHOT/reference/htmlsingle/#boot-features-application-events-and-listeners" target="_blank" rel="noopener">Spring Boot Events 文档</a></li>
+<li><a href="https://docs.spring.io/spring/docs/5.2.3.RELEASE/spring-framework-reference/core.html#spring-core" target="_blank" rel="noopener">Spring Events 文档</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/08/profile-not/" rel="next" title="Profile 否">
+                <i class="fa fa-chevron-left"></i> Profile 否
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">freedom</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-事件"><span class="nav-number">1.</span> <span class="nav-text">Spring Boot 事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-spring-factories-配置文件进行装配"><span class="nav-number">1.1.</span> <span class="nav-text">通过 spring.factories 配置文件进行装配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-context-listener-classes-property-进行装配"><span class="nav-number">1.2.</span> <span class="nav-text">通过 context.listener.classes property 进行装配</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-事件"><span class="nav-number">2.</span> <span class="nav-text">Spring 事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-ApplicationListener-lt-gt-接口的-Bean"><span class="nav-number">2.1.</span> <span class="nav-text">实现 ApplicationListener&lt;?&gt; 接口的 Bean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean-中用-EventListener-注解的方法"><span class="nav-number">2.2.</span> <span class="nav-text">Bean 中用 @EventListener 注解的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">freedom</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
