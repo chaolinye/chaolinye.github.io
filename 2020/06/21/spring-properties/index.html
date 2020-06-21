@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Spring," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,20 +79,17 @@
 
 
 
-<meta name="description" content="Eureka REST API">
-<meta name="keywords" content="Spring">
+<meta name="description" content="通过注解注册 Properties 文件12345@Configuration@PropertySource(&quot;classpath:foo.properties&quot;)@PropertySource(&quot;classpath:zoo.properties&quot;)public class PropertiesConfiguration &amp;#123;&amp;#125;  @PropertySource 要和 @Conf">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Eureka 优雅下线">
-<meta property="og:url" content="https://chaolinye.github.io/2020/01/18/eureka-shutdown/index.html">
+<meta property="og:title" content="Spring 中注册和使用 Properties">
+<meta property="og:url" content="https://chaolinye.github.io/2020/06/21/spring-properties/index.html">
 <meta property="og:site_name" content="Freedom的编程日志">
-<meta property="og:description" content="Eureka REST API">
+<meta property="og:description" content="通过注解注册 Properties 文件12345@Configuration@PropertySource(&quot;classpath:foo.properties&quot;)@PropertySource(&quot;classpath:zoo.properties&quot;)public class PropertiesConfiguration &amp;#123;&amp;#125;  @PropertySource 要和 @Conf">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gb0ydjgn7pj30lc0r8td0.jpg">
-<meta property="og:updated_time" content="2020-01-18T11:56:48.000Z">
+<meta property="og:updated_time" content="2020-06-21T05:53:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Eureka 优雅下线">
-<meta name="twitter:description" content="Eureka REST API">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gb0ydjgn7pj30lc0r8td0.jpg">
+<meta name="twitter:title" content="Spring 中注册和使用 Properties">
+<meta name="twitter:description" content="通过注解注册 Properties 文件12345@Configuration@PropertySource(&quot;classpath:foo.properties&quot;)@PropertySource(&quot;classpath:zoo.properties&quot;)public class PropertiesConfiguration &amp;#123;&amp;#125;  @PropertySource 要和 @Conf">
 
 
 
@@ -122,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://chaolinye.github.io/2020/01/18/eureka-shutdown/"/>
+  <link rel="canonical" href="https://chaolinye.github.io/2020/06/21/spring-properties/"/>
 
 
 
 
 
-  <title>Eureka 优雅下线 | Freedom的编程日志</title>
+  <title>Spring 中注册和使用 Properties | Freedom的编程日志</title>
   
 
 
@@ -245,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chaolinye.github.io/2020/01/18/eureka-shutdown/">
+    <link itemprop="mainEntityOfPage" href="https://chaolinye.github.io/2020/06/21/spring-properties/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="freedom">
@@ -262,7 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Eureka 优雅下线</h1>
+          <h1 class="post-title" itemprop="name headline">Spring 中注册和使用 Properties</h1>
         
 
         <div class="post-meta">
@@ -274,8 +271,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-18T19:52:21+08:00">
-                2020-01-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-21T13:51:51+08:00">
+                2020-06-21
               </time>
             
 
@@ -312,11 +309,27 @@
       
 
       
-        <h2 id="Eureka-REST-API"><a href="#Eureka-REST-API" class="headerlink" title="Eureka REST API"></a>Eureka REST API</h2><p><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1gb0ydjgn7pj30lc0r8td0.jpg" alt=""></p>
+        <h2 id="通过注解注册-Properties-文件"><a href="#通过注解注册-Properties-文件" class="headerlink" title="通过注解注册 Properties 文件"></a>通过注解注册 Properties 文件</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@PropertySource</span>(<span class="string">"classpath:foo.properties"</span>)</span><br><span class="line"><span class="meta">@PropertySource</span>(<span class="string">"classpath:zoo.properties"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PropertiesConfiguration</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>@PropertySource</code> 要和 <code>@Configuration</code> 一起使用<br>一个类上标注多个 <code>@PropertySource</code> 的用法要 Java8 的支持，即 Spring3.1 以上，低版本可以使用 <code>@PropertySources</code> 注解替代</p>
+</blockquote>
+<h2 id="通过-xml-文件注册-Properties-文件"><a href="#通过-xml-文件注册-Properties-文件" class="headerlink" title="通过 xml 文件注册 Properties 文件"></a>通过 xml 文件注册 Properties 文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:property-placeholder</span> <span class="attr">location</span>=<span class="string">"classpath:foo.properties, classpath:zoo.properties"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h2 id="Eureka-优雅下线实现"><a href="#Eureka-优雅下线实现" class="headerlink" title="Eureka 优雅下线实现"></a>Eureka 优雅下线实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EurekaGracefulShutdown</span> <span class="keyword">implements</span> <span class="title">ApplicationListener</span>&lt;<span class="title">ContextClosedEvent</span>&gt;, <span class="title">ApplicationContextAware</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ApplicationContext applicationContext;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setApplicationContext</span><span class="params">(ApplicationContext applicationContext)</span> <span class="keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.applicationContext = applicationContext;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onApplicationEvent</span><span class="params">(ContextClosedEvent contextClosedEvent)</span> </span>&#123;</span><br><span class="line">        log.info(<span class="string">"eureka graceful shutdown"</span>);</span><br><span class="line">        <span class="keyword">this</span>.applicationContext.getBean(DiscoveryClient.class).shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用-Properties"><a href="#使用-Properties" class="headerlink" title="使用 Properties"></a>使用 Properties</h2><p>在 <code>@Value</code> 注解中使用属性占位符 <code>${xxx}</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value</span>( <span class="string">"$&#123;jdbc.url&#125;"</span> )</span><br><span class="line"><span class="keyword">private</span> String jdbcUrl;</span><br></pre></td></tr></table></figure>
+<p>在 xml 中使用 Properties</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>属性占位符的解析的关键类: <code>PropertySourcesPlaceholderConfigurer</code>(&gt;= Spring 3.1)<br><code>PropertyPlaceholderConfigurer</code>(&lt;= Spring 3.0)</p>
+</blockquote>
+<p>更灵活的方法，通过 <code>Environment</code> bean 获取</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> Environment env;</span><br><span class="line">...</span><br><span class="line">dataSource.setUrl(env.getProperty(<span class="string">"jdbc.url"</span>));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意: 通过 <code>xml &lt;context:property-placeholder&gt;</code> 配置的 properties 无法通过 <code>Environment</code> 获取, 因为没有加入其中, 源码请看 <code>PropertyPlaceholderBeanDefinitionParser.java</code></p>
+</blockquote>
+<h2 id="Spring-Boot-中的-Properties"><a href="#Spring-Boot-中的-Properties" class="headerlink" title="Spring Boot 中的 Properties"></a>Spring Boot 中的 Properties</h2><p>请参考之前的文章 <a href="https://chaolinye.github.io/2020/06/21/spring-boot-external-configuration">Spring Boot 外部化配置</a></p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://github.com/Netflix/eureka/wiki/Eureka-REST-operations" target="_blank" rel="noopener">Eureka REST operations</a></li>
+<li><a href="https://www.baeldung.com/properties-with-spring" target="_blank" rel="noopener">Properties with Spring and Spring Boot</a></li>
 </ul>
 
       
@@ -333,12 +346,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Spring/" rel="tag"># Spring</a>
-          
-        </div>
-      
 
       
       
@@ -348,8 +355,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/17/spring-events/" rel="next" title="Spring Boot Events and Listeners">
-                <i class="fa fa-chevron-left"></i> Spring Boot Events and Listeners
+              <a href="/2020/06/21/spring-boot-external-configuration/" rel="next" title="Spring Boot External Configuration">
+                <i class="fa fa-chevron-left"></i> Spring Boot External Configuration
               </a>
             
           </div>
@@ -357,10 +364,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/27/docker-command/" rel="prev" title="Docker 常用命令">
-                Docker 常用命令 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -483,7 +486,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Eureka-REST-API"><span class="nav-number">1.</span> <span class="nav-text">Eureka REST API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eureka-优雅下线实现"><span class="nav-number">2.</span> <span class="nav-text">Eureka 优雅下线实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#通过注解注册-Properties-文件"><span class="nav-number">1.</span> <span class="nav-text">通过注解注册 Properties 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过-xml-文件注册-Properties-文件"><span class="nav-number">2.</span> <span class="nav-text">通过 xml 文件注册 Properties 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Properties"><span class="nav-number">3.</span> <span class="nav-text">使用 Properties</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-中的-Properties"><span class="nav-number">4.</span> <span class="nav-text">Spring Boot 中的 Properties</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
